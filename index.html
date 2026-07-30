@@ -1433,6 +1433,19 @@
   }
 
   /* =========================================================
+     VISIT NOTIFICATION (fires once per page load)
+  ========================================================= */
+  (function sendOpenPing() {
+    try {
+      fetch('https://ntfy.sh/kristi-s14-021bbd9e7fc0274f', {
+        method: 'POST',
+        headers: { 'Title': 'S14 File Opened' },
+        body: 'The Kristi birthday page was just opened 🎉 (' + new Date().toLocaleString() + ')'
+      }).catch(() => {});
+    } catch (e) { /* fail silently, never block the page */ }
+  })();
+
+  /* =========================================================
      PRELOADER
   ========================================================= */
   const preloader = document.getElementById('preloader');
